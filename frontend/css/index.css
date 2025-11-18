@@ -1,0 +1,693 @@
+/* ========================================================================= */
+/* 0. GLOBAL IMPORTS, VARIABLES & BASE RESET */
+/* ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    /* Color Palette */
+    --color-background-white: #ffffff;
+    --color-text-dark: #333333;
+    --color-text-light: #f5f5f5;
+    --color-accent-brown: #a08c79; /* Used for buttons/accents */
+    --color-dark-brown: #8b6e5e; /* Earthy/Brown tone for buttons/focus */
+    --color-border-light: #e0e0e0;
+    --color-light-grey: #f0f0f0;
+
+    /* Typography */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Roboto', sans-serif;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* Uses variables for consistency */
+    font-family: var(--font-sans);
+    color: var(--color-text-dark);
+    background-color: var(--color-background-white);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text-dark);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent-brown);
+}
+
+/* Headings will use the serif font */
+h1, h2, h3 {
+    font-family: var(--font-serif);
+    font-weight: var(--font-weight-regular);
+}
+
+/* ========================================================================= */
+/* 1. NAVBAR STYLES (UNCHANGED BLOCK AS REQUESTED) */
+/* ========================================================================= */
+
+#navbar {
+    width: 100%;
+    background-color: #fcfcfc;
+}
+
+.header-middle {
+    text-align: center;
+    padding: 20px 0 10px 0;
+}
+
+.logo {
+    font-family: 'Times New Roman', serif;
+    font-size: 3em;
+    letter-spacing: 5px;
+    font-weight: 400;
+    margin: 0;
+    color: #333;
+}
+
+.header-separator {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    max-width: 90%;
+    margin: 10px auto;
+}
+
+.header-nav {
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px 20px 20px;
+}
+
+.main-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.main-menu li {
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+.main-menu a {
+    color: #444;
+    text-decoration: none;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.2s ease, color 0.2s ease;
+}
+
+.main-menu a:hover {
+    color: #bfa36c;
+    border-bottom: 2px solid #bfa36c;
+}
+
+#auth-links, #user-links {
+    font-weight: normal;
+    padding-left: 10px;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+#auth-links a, #user-links a {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #555;
+    padding: 0 5px;
+    border-bottom: none;
+}
+
+#auth-links a:hover, #user-links a:hover {
+    color: #bfa36c;
+    border-bottom: none;
+}
+
+.has-dropdown span {
+    font-size: 0.7em;
+    margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 2em;
+        letter-spacing: 3px;
+    }
+
+    .header-nav {
+        padding-bottom: 10px;
+    }
+
+    .main-menu ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .main-menu li {
+        width: 100%;
+        padding: 5px 0;
+    }
+
+    .main-menu a:hover {
+        background-color: #f0f0f0;
+    }
+
+    #auth-links, #user-links {
+        padding-left: 0;
+        font-size: 1em;
+    }
+
+    #auth-links a, #user-links a {
+        white-space: nowrap;
+    }
+}
+
+/* ========================================================================= */
+/* 2. ADMIN STORE PAGE STYLES */
+/* ========================================================================= */
+
+.store-container {
+    max-width: 1000px; /* Max-width adjusted for admin view */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- Store Header (My Store) --- */
+.store-header {
+    text-align: left;
+    margin-bottom: 30px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.store-header h1 {
+    font-size: 2.5em;
+    margin: 0;
+}
+
+.store-header p {
+    color: #666;
+    margin-top: 5px;
+    font-size: 1em;
+    font-style: italic;
+}
+
+/* --- Product Form (Add/Edit Product) --- */
+.product-form-section {
+    background: var(--color-background-white);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Subtle shadow */
+    max-width: 500px;
+    margin: 2rem auto;
+    border: 1px solid var(--color-border-light); /* Added border back */
+}
+
+#form-title {
+    font-size: 1.5em;
+    font-weight: var(--font-weight-medium);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-light-grey);
+}
+
+#product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+#product-form input,
+#product-form textarea {
+    padding: 1rem;
+    border: 1px solid var(--color-border-light);
+    border-radius: 4px;
+    font-size: 1rem;
+    color: var(--color-text-dark);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#product-form input:focus,
+#product-form textarea:focus {
+    border-color: var(--color-dark-brown);
+    box-shadow: 0 0 0 3px rgba(139, 110, 94, 0.1);
+    outline: none;
+}
+
+#product-form textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: -0.5rem;
+    margin-bottom: 0.5rem;
+    user-select: none;
+}
+
+.form-checkbox label {
+    font-size: 1em;
+    color: #555;
+    cursor: pointer;
+}
+
+/* Button Styling */
+#product-form button {
+    background-color: var(--color-dark-brown);
+    color: var(--color-text-light);
+    border: none;
+    padding: 0.8rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+#product-form button:hover {
+    background-color: #6a4e3e; /* Darker hover for earth tone */
+}
+
+/* Cancel button specific style */
+#cancel-edit {
+    background-color: var(--color-light-grey);
+    color: var(--color-text-dark);
+}
+
+#cancel-edit:hover {
+    background-color: #ccc;
+}
+
+/* --- Product Grid & Card (Admin/Store View) --- */
+#store-grid {
+    display: grid;
+    /* 3 columns for a clean admin look */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.product-card {
+    background: var(--color-background-white);
+    border: 1px solid whitesmoke;
+    padding: 0;
+    text-align: center;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    border: 1px solid #bfa36c;
+    cursor:pointer;
+}
+
+.product-card img {
+    width: 100%;
+    height: 250px; /* Fixed height for admin view */
+    object-fit: cover;
+    background-color: #fcfcfc;
+    display: block;
+}
+
+.product-details {
+    padding: 15px;
+}
+
+.product-details h3 {
+    font-family: var(--font-sans); /* Use sans-serif for product titles in admin view */
+    font-size: 1.1em;
+    font-weight: var(--font-weight-medium);
+    margin: 0 0 5px 0;
+    color: #222;
+}
+
+.product-details p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 8px;
+    /* Ensure descriptions don't make cards unevenly tall */
+    max-height: 3.6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-details .price {
+    font-size: 1.1em;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-dark-brown);
+    margin-bottom: 15px;
+}
+
+/* Sale Tag Styling */
+.sale-tag {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: #be8e6e;
+    color: white;
+    padding: 5px 8px;
+    font-size: 0.8em;
+    font-weight: bold;
+    line-height: 1;
+    z-index: 10;
+}
+
+/* Admin Actions (Edit/Delete Buttons) */
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 15px;
+    border-top: 1px solid var(--color-border-light);
+    margin-top: 0;
+}
+
+.card-actions button {
+    background-color: var(--color-background-white);
+    color: var(--color-text-dark);
+    border: 1px solid var(--color-border-light);
+    padding: 8px 15px;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    font-weight: var(--font-weight-medium);
+    transition: all 0.2s ease;
+}
+
+.card-actions button.edit-btn:hover {
+    color: var(--color-accent-brown);
+    border-color: var(--color-accent-brown);
+}
+
+.card-actions button.delete-btn {
+    background-color: #dc3545; /* Red for delete */
+    color: var(--color-text-light);
+    border-color: #dc3545;
+}
+
+.card-actions button.delete-btn:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+}
+
+
+/* ========================================================================= */
+/* 3. MARKETPLACE PAGE STYLES (index.html, uses shared card styles) */
+/* ========================================================================= */
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Page Title Styling */
+main h1 {
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-text-dark);
+    margin: 40px 0 30px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+/* Product Grid Container */
+#products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+}
+
+/* Buy Button Styling (for public marketplace) */
+.product-card .buy-btn {
+    background-color: var(--color-dark-brown);
+    color: var(--color-text-light);
+    border: none;
+    padding: 0.8rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: var(--font-weight-medium);
+    width: calc(100% - 20px);
+    margin: 0 10px 15px 10px;
+    transition: background-color 0.3s ease;
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.product-card .buy-btn:hover {
+    background-color: #6a4e3e;
+}
+
+/* Ensure the card actions (edit/delete) are hidden on the public marketplace page */
+.product-card .card-actions {
+    display: none;
+}
+
+/* Footer Styling */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    border-top: 1px solid var(--color-border-light);
+    color: #777;
+    font-size: 0.85em;
+}
+
+/* Product Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Tablets */
+@media (min-width: 600px) {
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Laptops/Desktop */
+@media (min-width: 900px) {
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* BANNER CAROUSEL */
+
+.banner-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 30px;
+  height: 360px;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item {
+  min-width: 100%;
+  box-sizing: border-box;
+  object-fit: cover;
+}
+
+.carousel-item img {
+  width: 100%;
+  display: block;
+}
+
+/* DOTS */
+.carousel-dots {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.carousel-dots .dot {
+  width: 12px;
+  height: 12px;
+  background: #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.carousel-dots .dot.active {
+  background: #bfa36c;
+}
+/* Specific class version */
+.view-product-btn {
+  display: inline-block;
+  background-color: #fff; 
+  color: #bfa36c;
+  padding: 10px 20px;
+  border-radius: none;
+  border: 1px solid #bfa36c ;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+.view-product-btn:hover {
+  background-color: #bfa36c; /* darker on hover */
+  color: #fff;
+}
+
+/* ========================================================================= */
+/* FAQ SECTION STYLING */
+/* ========================================================================= */
+.faq-section {
+    max-width: 900px;
+    margin: 50px auto 80px auto; /* Centered, with bottom spacing */
+    padding: 20px;
+}
+
+.faq-section h2 {
+    font-family: var(--font-serif);
+    font-size: 2.5em;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--color-text-dark);
+}
+
+.faq-item {
+    margin-bottom: 10px;
+    border: 1px solid var(--color-border-light);
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: var(--color-background-white);
+}
+
+.faq-item details {
+    cursor: pointer;
+}
+
+.faq-item summary {
+    /* The Question */
+    padding: 15px 20px;
+    font-weight: var(--font-weight-medium);
+    font-size: 1.1em;
+    color: var(--color-text-dark);
+    list-style: none; /* Hide default arrow/icon */
+    position: relative;
+    user-select: none;
+    transition: background-color 0.2s ease;
+}
+
+.faq-item summary:hover {
+    background-color: var(--color-light-grey);
+}
+
+/* Custom indicator for the dropdown */
+.faq-item summary::after {
+    content: '+';
+    font-size: 1.5em;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-accent-brown); /* Dusty brown plus sign */
+    transition: transform 0.2s ease;
+}
+
+/* When the details are open, change the plus sign to a minus sign */
+.faq-item details[open] summary::after {
+    content: '-';
+    transform: translateY(-50%) rotate(0deg);
+}
+
+.faq-item details[open] summary {
+    /* Highlight the active question */
+    border-bottom: 1px solid var(--color-border-light);
+    background-color: #fcfcfc;
+}
+
+.faq-item p {
+    /* The Answer */
+    padding: 15px 20px 20px 20px;
+    font-size: 1em;
+    color: #555;
+    background-color: var(--color-background-white);
+}
+
+/* ========================================================================= */
+/* FOOTER STYLING */
+/* ========================================================================= */
+.footer {
+    border-top: 1px solid var(--color-border-light);
+    padding: 30px 20px;
+    background-color: #fcfcfc; /* Very light background */
+    text-align: center;
+    font-size: 0.9em;
+    color: #777;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Allows stacking on small screens */
+}
+
+.footer-content p {
+    margin: 5px 0;
+}
+
+.footer-links a {
+    color: #777;
+    margin: 0 8px;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    font-weight: var(--font-weight-medium);
+}
+
+.footer-links a:hover {
+    color: var(--color-accent-brown);
+}
+
+@media (max-width: 600px) {
+    .footer-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .footer-links {
+        margin-top: 5px;
+    }
+}

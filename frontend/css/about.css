@@ -1,0 +1,189 @@
+/* ========================================================================= */
+/* --- Global Imports & Variables (Consolidated) --- */
+/* ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    /* Color Palette */
+    --color-background-white: #ffffff;
+    --color-text-dark: #333333;
+    --color-text-light: #f5f5f5;
+    --color-accent-brown: #a08c79; /* Used for subtle accents */
+    --color-dark-brown: #8b6e5e; /* Used for hover/primary buttons */
+    --color-border-light: #e0e0e0;
+
+    /* Typography */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Roboto', sans-serif;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+}
+
+/* Base Styles & Reset (Consolidated) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--color-text-dark);
+    background-color: var(--color-background-white);
+    line-height: 1.6;
+}
+
+/* Headings */
+h1, h2 {
+    font-family: var(--font-serif);
+    font-weight: var(--font-weight-regular);
+}
+
+/* ========================================================================= */
+/* --- NAVBAR STYLES (UNCHANGED BLOCK AS REQUESTED) --- */
+/* ========================================================================= */
+
+/* --- Global Reset & Container (Unchanged) --- */
+#navbar {
+    width: 100%;
+    /* Ensures the header sits at the very top */
+    background-color: #fcfcfc;
+}
+
+/* --- Row 2: The Logo (AXELS) (Unchanged) --- */
+.header-middle {
+    text-align: center;
+    padding: 20px 0 10px 0;
+}
+
+.logo {
+    font-family: 'Times New Roman', serif;
+    font-size: 3em;
+    letter-spacing: 5px;
+    font-weight: 400;
+    margin: 0;
+    color: #333;
+}
+
+/* --- The Separator Line (Unchanged) --- */
+.header-separator {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    max-width: 90%;
+    margin: 10px auto;
+}
+
+/* --- Row 3: Main Navigation Bar Container (Unchanged) --- */
+.header-nav {
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px 20px 20px;
+}
+
+/* --- The Unordered List Container (Unchanged) --- */
+.main-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 30px;
+    align-items: center; /* Vertically aligns all list items (links and text) */
+}
+
+/* --- Individual List Items and Links Text (Unchanged) --- */
+.main-menu li {
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+.main-menu a {
+    color: #444;
+    text-decoration: none;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent; /* Base for the hover effect */
+    transition: border-bottom 0.2s ease, color 0.2s ease; /* Smooth transition */
+}
+
+/* ✨ HOVER EFFECT: Change color and add a subtle gold underline on hover (Unchanged) */
+.main-menu a:hover {
+    color: #bfa36c; /* Soft gold/brown text color on hover */
+    border-bottom: 2px solid #bfa36c;
+}
+
+/* Login/Logout Status Styling (Unchanged) */
+#auth-links, #user-links {
+    font-weight: normal;
+    padding-left: 10px;
+    font-size: 0.9em;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+/* Style for separators within auth/user links (Unchanged) */
+#auth-links a, #user-links a {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #555;
+    padding: 0 5px;
+    border-bottom: none;
+}
+
+#auth-links a:hover, #user-links a:hover {
+    color: #bfa36c;
+    border-bottom: none;
+}
+
+/* Categories Dropdown Icon (Unchanged) */
+.has-dropdown span {
+    font-size: 0.7em;
+    margin-left: 5px;
+}
+
+/* ========================================================================= */
+/* 📱 RESPONSIVENESS: Media Query for smaller screens (e.g., phones) (Unchanged) */
+/* ========================================================================= */
+@media (max-width: 768px) {
+
+    /* 1. Simplify the Logo */
+    .logo {
+        font-size: 2em;
+        letter-spacing: 3px;
+    }
+
+    /* 2. Stack the Navigation Links */
+    .header-nav {
+        padding-bottom: 10px;
+    }
+
+    .main-menu ul {
+        /* Change from horizontal flex to vertical column */
+        flex-direction: column;
+        gap: 10px; /* Reduce vertical space between stacked links */
+        text-align: center;
+    }
+
+    /* Center text inside the list items */
+    .main-menu li {
+        width: 100%;
+        padding: 5px 0;
+    }
+
+    .main-menu a:hover {
+        /* Make the hover effect stand out more when stacked */
+        background-color: #f0f0f0;
+    }
+
+    /* Ensure the auth/user links stack nicely */
+    #auth-links, #user-links {
+        padding-left: 0;
+        font-size: 1em;
+    }
+
+    #auth-links a, #user-links a {
+        /* Ensure the pipe separator doesn't break */
+        white-space: nowrap;
+    }
+}

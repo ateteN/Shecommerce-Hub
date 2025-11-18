@@ -1,0 +1,428 @@
+/* ========================================================================= */
+/* --- Global Imports & Variables (Consolidated) --- */
+/* ========================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    /* Color Palette */
+    --color-background-white: #ffffff;
+    --color-text-dark: #333333;
+    --color-text-light: #f5f5f5;
+    --color-accent-brown: #a08c79; /* Used for subtle accents */
+    --color-dark-brown: #8b6e5e; /* Used for hover/primary buttons */
+    --color-border-light: #e0e0e0;
+
+    /* Typography */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Roboto', sans-serif;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+}
+
+/* Base Styles & Reset (Consolidated) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--color-text-dark);
+    background-color: var(--color-background-white);
+    line-height: 1.6;
+}
+
+/* Headings */
+h1, h2 {
+    font-family: var(--font-serif);
+    font-weight: var(--font-weight-regular);
+}
+
+/* ========================================================================= */
+/* --- NAVBAR STYLES (UNCHANGED BLOCK AS REQUESTED) --- */
+/* ========================================================================= */
+
+/* --- Global Reset & Container (Unchanged) --- */
+#navbar {
+    width: 100%;
+    /* Ensures the header sits at the very top */
+    background-color: #fcfcfc;
+}
+
+/* --- Row 2: The Logo (AXELS) (Unchanged) --- */
+.header-middle {
+    text-align: center;
+    padding: 20px 0 10px 0;
+}
+
+.logo {
+    font-family: 'Times New Roman', serif;
+    font-size: 3em;
+    letter-spacing: 5px;
+    font-weight: 400;
+    margin: 0;
+    color: #333;
+}
+
+/* --- The Separator Line (Unchanged) --- */
+.header-separator {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    max-width: 90%;
+    margin: 10px auto;
+}
+
+/* --- Row 3: Main Navigation Bar Container (Unchanged) --- */
+.header-nav {
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px 20px 20px;
+}
+
+/* --- The Unordered List Container (Unchanged) --- */
+.main-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 30px;
+    align-items: center; /* Vertically aligns all list items (links and text) */
+}
+
+/* --- Individual List Items and Links Text (Unchanged) --- */
+.main-menu li {
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+.main-menu a {
+    color: #444;
+    text-decoration: none;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent; /* Base for the hover effect */
+    transition: border-bottom 0.2s ease, color 0.2s ease; /* Smooth transition */
+}
+
+/* ✨ HOVER EFFECT: Change color and add a subtle gold underline on hover (Unchanged) */
+.main-menu a:hover {
+    color: #bfa36c; /* Soft gold/brown text color on hover */
+    border-bottom: 2px solid #bfa36c;
+}
+
+/* Login/Logout Status Styling (Unchanged) */
+#auth-links, #user-links {
+    font-weight: normal;
+    padding-left: 10px;
+    font-size: 0.9em;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+/* Style for separators within auth/user links (Unchanged) */
+#auth-links a, #user-links a {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #555;
+    padding: 0 5px;
+    border-bottom: none;
+}
+
+#auth-links a:hover, #user-links a:hover {
+    color: #bfa36c;
+    border-bottom: none;
+}
+
+/* Categories Dropdown Icon (Unchanged) */
+.has-dropdown span {
+    font-size: 0.7em;
+    margin-left: 5px;
+}
+
+/* ========================================================================= */
+/* 📱 RESPONSIVENESS: Media Query for smaller screens (e.g., phones) (Unchanged) */
+/* ========================================================================= */
+@media (max-width: 768px) {
+
+    /* 1. Simplify the Logo */
+    .logo {
+        font-size: 2em;
+        letter-spacing: 3px;
+    }
+
+    /* 2. Stack the Navigation Links */
+    .header-nav {
+        padding-bottom: 10px;
+    }
+
+    .main-menu ul {
+        /* Change from horizontal flex to vertical column */
+        flex-direction: column;
+        gap: 10px; /* Reduce vertical space between stacked links */
+        text-align: center;
+    }
+
+    /* Center text inside the list items */
+    .main-menu li {
+        width: 100%;
+        padding: 5px 0;
+    }
+
+    .main-menu a:hover {
+        /* Make the hover effect stand out more when stacked */
+        background-color: #f0f0f0;
+    }
+
+    /* Ensure the auth/user links stack nicely */
+    #auth-links, #user-links {
+        padding-left: 0;
+        font-size: 1em;
+    }
+
+    #auth-links a, #user-links a {
+        /* Ensure the pipe separator doesn't break */
+        white-space: nowrap;
+    }
+}
+
+/* ========================================================================= */
+/* --- STORE ADMIN PAGE STYLES (Cleaned & Integrated) --- */
+/* ========================================================================= */
+
+/* --- Main Layout Container --- */
+.store-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* --- Store Header (My Store / Manage your products) --- */
+.store-header {
+    text-align: left;
+    margin-bottom: 30px;
+    padding: 20px 0 10px 0;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.store-header h1 {
+    font-size: 2.5em;
+    font-weight: var(--font-weight-regular);
+    margin-bottom: 5px;
+}
+
+.store-header p {
+    font-size: 1em;
+    color: #666;
+    font-style: italic;
+}
+
+/* --- Add/Edit Product Form Styling --- */
+
+.product-form-section {
+    background: #fff;
+    padding: 30px;
+    border: 1px solid var(--color-border-light);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    margin-bottom: 40px;
+}
+
+#form-title {
+    font-size: 1.8em;
+    font-weight: var(--font-weight-regular);
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: var(--color-text-dark);
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+#product-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#product-form input[type="text"],
+#product-form input[type="number"],
+#product-form input[type="url"],
+#product-form textarea {
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    font-size: 1em;
+    color: var(--color-text-dark);
+    font-family: var(--font-sans);
+    transition: border-color 0.2s ease;
+}
+
+#product-form input:focus,
+#product-form textarea:focus {
+    border-color: var(--color-accent-brown);
+    outline: none;
+    box-shadow: 0 0 0 1px var(--color-accent-brown);
+}
+
+#product-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* Checkbox and Label */
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9em;
+}
+
+.form-checkbox input[type="checkbox"] {
+    transform: scale(1.2);
+}
+
+.form-checkbox label {
+    color: #555;
+    font-weight: var(--font-weight-medium);
+}
+
+/* Submit and Cancel Buttons */
+#product-form button {
+    padding: 12px;
+    border: none;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 1em;
+    text-transform: uppercase;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.5px;
+    transition: background-color 0.3s ease;
+}
+
+#submit-btn {
+    background-color: var(--color-accent-brown);
+    color: var(--color-text-light);
+}
+
+#submit-btn:hover {
+    background-color: var(--color-dark-brown);
+}
+
+#cancel-edit {
+    background-color: #f0f0f0;
+    color: var(--color-text-dark);
+    margin-top: -10px;
+}
+
+#cancel-edit:hover {
+    background-color: var(--color-border-light);
+}
+
+/* --- Product Grid & Card Styling --- */
+
+#store-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.product-card {
+    background: var(--color-background-white);
+    border: 1px solid var(--color-border-light);
+    padding: 0;
+    text-align: left;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* Image */
+.product-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    background-color: #fcfcfc;
+    display: block;
+}
+
+/* Product Details */
+.product-details {
+    padding: 15px;
+}
+
+.product-details h3 {
+    font-family: var(--font-sans);
+    font-size: 1.1em;
+    font-weight: var(--font-weight-medium);
+    margin: 0 0 5px 0;
+}
+
+.product-details p {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 8px;
+    max-height: 3.6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-details .price {
+    font-size: 1.1em;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-dark-brown);
+    margin-bottom: 15px;
+}
+
+/* Admin Actions (Edit/Delete Buttons) */
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 15px;
+    border-top: 1px solid var(--color-border-light);
+}
+
+.card-actions button {
+    background-color: #fff;
+    color: var(--color-text-dark);
+    border: 1px solid var(--color-border-light);
+    padding: 8px 15px;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+}
+
+.card-actions button.edit-btn:hover {
+    background-color: #fff;
+    color: var(--color-accent-brown);
+    border-color: var(--color-accent-brown);
+}
+
+.card-actions button.delete-btn {
+    background-color: #dc3545;
+    color: var(--color-text-light);
+    border-color: #dc3545;
+}
+
+.card-actions button.delete-btn:hover {
+    background-color: #c82333;
+    border-color: #c82333;
+}
+
+/* Footer Styling */
+.footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 50px;
+    border-top: 1px solid var(--color-border-light);
+    color: #777;
+    font-size: 0.85em;
+}

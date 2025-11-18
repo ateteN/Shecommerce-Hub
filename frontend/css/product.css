@@ -1,0 +1,311 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    /* Color Palette */
+    --color-background-white: #ffffff;
+    --color-text-dark: #333333;
+    --color-text-light: #f5f5f5;
+    --color-accent-brown: #a08c79; /* Used for buttons/accents */
+    --color-dark-brown: #8b6e5e; /* Earthy/Brown tone for buttons/focus */
+    --color-border-light: #e0e0e0;
+    --color-light-grey: #f0f0f0;
+
+    /* Typography */
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Roboto', sans-serif;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 700;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* Uses variables for consistency */
+    font-family: var(--font-sans);
+    color: var(--color-text-dark);
+    background-color: var(--color-background-white);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text-dark);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-accent-brown);
+}
+
+/* Headings will use the serif font */
+h1, h2, h3 {
+    font-family: var(--font-serif);
+    font-weight: var(--font-weight-regular);
+}
+
+/* ========================================================================= */
+/* 1. NAVBAR STYLES (UNCHANGED BLOCK AS REQUESTED) */
+/* ========================================================================= */
+
+#navbar {
+    width: 100%;
+    background-color: #fcfcfc;
+}
+
+.header-middle {
+    text-align: center;
+    padding: 20px 0 10px 0;
+}
+
+.logo {
+    font-family: 'Times New Roman', serif;
+    font-size: 3em;
+    letter-spacing: 5px;
+    font-weight: 400;
+    margin: 0;
+    color: #333;
+}
+
+.header-separator {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    max-width: 90%;
+    margin: 10px auto;
+}
+
+.header-nav {
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px 20px 20px;
+}
+
+.main-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.main-menu li {
+    font-size: 1em;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+.main-menu a {
+    color: #444;
+    text-decoration: none;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.2s ease, color 0.2s ease;
+}
+
+.main-menu a:hover {
+    color: #bfa36c;
+    border-bottom: 2px solid #bfa36c;
+}
+
+#auth-links, #user-links {
+    font-weight: normal;
+    padding-left: 10px;
+    font-size: 0.9em;
+    white-space: nowrap;
+}
+
+#auth-links a, #user-links a {
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #555;
+    padding: 0 5px;
+    border-bottom: none;
+}
+
+#auth-links a:hover, #user-links a:hover {
+    color: #bfa36c;
+    border-bottom: none;
+}
+
+.has-dropdown span {
+    font-size: 0.7em;
+    margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        font-size: 2em;
+        letter-spacing: 3px;
+    }
+
+    .header-nav {
+        padding-bottom: 10px;
+    }
+
+    .main-menu ul {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .main-menu li {
+        width: 100%;
+        padding: 5px 0;
+    }
+
+    .main-menu a:hover {
+        background-color: #f0f0f0;
+    }
+
+    #auth-links, #user-links {
+        padding-left: 0;
+        font-size: 1em;
+    }
+
+    #auth-links a, #user-links a {
+        white-space: nowrap;
+    }
+}
+
+/* PRODUCT DETAILS STYLING */
+/* ========================================================================= */
+/* PRODUCT DETAIL LAYOUT AND CARD */
+/* ========================================================================= */
+
+.product-detail-container {
+    padding: 40px 20px;
+}
+
+.product-detail-card {
+    display: flex;
+    flex-direction: row; /* Default to side-by-side layout */
+    gap: 50px;
+    background: var(--color-background-white);
+    padding: 30px;
+    border: 1px solid var(--color-border-light);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* Subtle elegance */
+}
+
+/* --- Product Image Section --- */
+.product-detail-card img {
+    flex: 1 1 50%; /* Image takes up half the width */
+    max-height: 600px;
+    width: 100%;
+    object-fit: cover;
+    background-color: #fcfcfc;
+    border: 1px solid var(--color-border-light);
+}
+
+/* --- Product Info Section --- */
+.product-info {
+    flex: 1 1 50%; /* Info takes up the other half */
+    padding: 20px 0;
+}
+
+.product-info h2 {
+    font-family: var(--font-serif);
+    font-size: 3em;
+    font-weight: var(--font-weight-regular);
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-border-light);
+}
+
+.product-info p {
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 25px;
+}
+
+/* Price Tag */
+.product-info .price {
+    font-family: var(--font-serif);
+    font-size: 2.2em;
+    font-weight: var(--font-weight-medium);
+    color: var(--color-dark-brown);
+    margin: 30px 0;
+}
+
+/* --- Add to Cart Button (Reusing the 'View Product' style) --- */
+.view-product-btn {
+    /* Style consistency with the homepage buttons */
+    background-color: var(--color-dark-brown);
+    color: var(--color-text-light);
+    border: 2px solid var(--color-dark-brown);
+    padding: 15px 40px;
+    text-transform: uppercase;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: block; /* Make it a block element for full width or use a max-width */
+    width: 100%;
+    max-width: 400px; /* Control the button size on desktop */
+    margin-top: 40px;
+}
+
+.view-product-btn:hover {
+    background-color: var(--color-accent-brown);
+    border-color: var(--color-accent-brown);
+}
+
+/* ========================================================================= */
+/* RESPONSIVENESS */
+/* ========================================================================= */
+@media (max-width: 900px) {
+    .product-detail-card {
+        flex-direction: column; /* Stack image and info vertically on smaller screens */
+        padding: 20px;
+        gap: 30px;
+    }
+
+    .product-detail-card img {
+        max-height: 400px;
+    }
+
+    .product-info h2 {
+        font-size: 2.2em;
+    }
+
+    .product-info .price {
+        font-size: 1.8em;
+    }
+
+    .view-product-btn {
+        max-width: none; /* Let the button stretch to full width of the info block */
+    }
+}
+
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.quantity-control button {
+  background-color: #bfa36c;
+  color: #fff;
+  border: none;
+  padding: 0.2rem 0.7rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: none;
+  transition: background 0.3s ease;
+}
+.quantity-control input {
+  width: 100px;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0.3rem;
+  font-size: 1rem;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Store | She-Commerce Hub</title>
+  <link rel="stylesheet" href="css/store.css">
+</head>
+
+<body>
+  <header id="navbar"></header>
+
+  <main class="store-container">
+    <section class="store-header">
+      <h1>My Store</h1>
+      <p>Manage your products — add, edit, or delete.</p>
+    </section>
+
+    <!-- Add/Edit Product Form -->
+    <section class="product-form-section">
+  <h2 id="form-title">Add New Product</h2>
+  <form id="product-form">
+    <input type="hidden" id="product-id" />
+    <input type="text" id="name" placeholder="Product Name" required>
+    <textarea id="description" placeholder="Product Description" required></textarea>
+    <input type="number" id="price" placeholder="Price ($)" required step="0.01">
+    <input type="url" id="image" placeholder="Image URL" required>
+    
+    <div class="form-checkbox">
+      <input type="checkbox" id="isSale">
+      <label for="isSale">On Sale</label>
+    </div>
+
+    <button type="submit" id="submit-btn">Add Product</button>
+    <button type="button" id="cancel-edit" style="display:none;">Cancel Edit</button>
+  </form>
+</section>
+
+    <!-- Product Grid -->
+    <section id="store-grid" class="store-grid"></section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 She-Commerce Hub | Empowering Women Entrepreneurs</p>
+  </footer>
+
+  <script type="module" src="js/store.js"></script>
+  <script type="module" src="js/navbar.js"></script>
+</body>
+</html>

@@ -18,33 +18,37 @@
 
     <!-- Add/Edit Product Form -->
     <section class="product-form-section">
-      <h2 id="form-title">Add New Product</h2>
-      <form id="product-form">
-        <input type="hidden" id="product-id" />
-        <input type="text" id="name" placeholder="Product Name" required>
-        <textarea id="description" placeholder="Product Description" required></textarea>
-        <input type="number" id="price" placeholder="Price ($)" required step="0.01">
-        <input type="url" id="image" placeholder="Image URL" required>
+  <h2 id="form-title">Add New Product</h2>
+  <form id="product-form">
+    <input type="hidden" id="product-id" />
+    <input type="text" id="name" placeholder="Product Name" required>
+    <textarea id="description" placeholder="Product Description" required></textarea>
+    <input type="number" id="price" placeholder="Price ($)" required step="0.01">
+    <input type="url" id="image" placeholder="Image URL" required>
 
-        <div class="form-checkbox">
-          <input type="checkbox" id="isSale">
-          <label for="isSale">On Sale</label>
-        </div>
+    <!-- Sale checkbox -->
+    <div class="form-checkbox">
+      <input type="checkbox" id="isSale">
+      <label for="isSale">On Sale</label>
+    </div>
 
-        <!-- CATEGORY FIELD -->
-        <select id="category" required>
-          <option value="" disabled selected>Select Category</option>
-          <option value="technology">Technology</option>
-          <option value="jewelry">Jewelry</option>
-          <option value="beauty">Beauty</option>
-          <option value="sports">Sports</option>
-          <option value="others">Others</option>
-        </select>
+    <!-- Discount percentage (hidden by default) -->
+    <input type="number" id="discount" placeholder="Discount %" min="1" max="100" style="display:none; margin-bottom: 10px;">
 
-        <button type="submit" id="submit-btn">Add Product</button>
-        <button type="button" id="cancel-edit" style="display:none;">Cancel Edit</button>
-      </form>
-    </section>
+    <!-- Category dropdown -->
+    <select id="category" required>
+      <option value="" disabled selected>Select Category</option>
+      <option value="technology">Technology</option>
+      <option value="jewelry">Jewelry</option>
+      <option value="beauty">Beauty</option>
+      <option value="sports">Sports</option>
+      <option value="others">Others</option>
+    </select>
+
+    <button type="submit" id="submit-btn">Add Product</button>
+    <button type="button" id="cancel-edit" style="display:none;">Cancel Edit</button>
+  </form>
+</section>
 
     <!-- Product Grid -->
     <section id="store-grid" class="store-grid"></section>

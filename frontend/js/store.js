@@ -5,6 +5,60 @@ const formTitle = document.getElementById('form-title');
 const cancelEditBtn = document.getElementById('cancel-edit');
 const submitBtn = document.getElementById('submit-btn');
 
+const isSaleCheckbox = document.getElementById('isSale');
+const discountInput = document.getElementById('discount');
+
+// Show/hide discount input
+isSaleCheckbox.addEventListener('change', () => {
+  discountInput.style.display = isSaleCheckbox.checked ? 'block' : 'none';
+});
+
+// --- reusable function to render product cards ---
+function renderProductCard(product) {
+  const card = document.createElement('div');
+  card.classList.add('product-card');
+
+  let saleTag = '';
+  let priceHTML = `<p class="price">$${parseFloat(product.price).toFixed(2)}</p>`;
+
+  if (product.isSale && product.discount) {
+    const discountedPrice = (product.price * (1 - product.discount / 100)).toFixed(2);
+    saleTag = `<div class="sale-tag">SALE -${product.discount}%</div>`;
+    priceHTML = `
+      <p class="price">
+        <span class="original-price" style="text-decoration: line-through; color: #888;">$${parseFloat(product.price).toFixed(2)}</span>
+        <span class="discounted-price">$${discountedPrice}</span>
+      </p>
+    `;
+  }
+
+  const categoryTag = product.category ? `<p class="category-tag">${product.category.toUpperCase()}</p>` : '';
+
+  card.innerHTML = `
+    ${saleTag}
+    <img src="${product.image}" alt="${product.name}">
+    <h3>${product.name}</h3>
+    <p>${product.description}</p>
+    ${priceHTML}
+    ${categoryTag}
+    <div class="card-actions">
+      <button class="edit-btn" onclick="editProduct(
+        '${product._id}',
+        '${product.name.replace(/'/g, "\\'")}',
+        '${product.description.replace(/'/g, "\\'")}',
+        ${product.price},
+        '${product.image}',
+        ${product.isSale || false},
+        ${product.discount || 0},
+        '${product.category || ''}'
+      )">Edit</button>
+      <button class="delete-btn" onclick="deleteProduct('${product._id}')">Delete</button>
+    </div>
+  `;
+
+  return card;
+}
+
 // Load all products
 async function loadProducts() {
   try {
@@ -13,32 +67,7 @@ async function loadProducts() {
     grid.innerHTML = '';
 
     products.forEach(product => {
-      const card = document.createElement('div');
-      card.classList.add('product-card');
-
-      const saleTag = product.isSale ? '<div class="sale-tag">SALE</div>' : '';
-      const categoryTag = product.category ? `<p class="category-tag">${product.category.toUpperCase()}</p>` : '';
-
-      card.innerHTML = `
-        ${saleTag}
-        <img src="${product.image}" alt="${product.name}">
-        <h3>${product.name}</h3>
-        <p>${product.description}</p>
-        <p class="price">$${parseFloat(product.price).toFixed(2)}</p>
-        ${categoryTag}
-        <div class="card-actions">
-          <button class="edit-btn" onclick="editProduct(
-            '${product._id}',
-            '${product.name.replace(/'/g, "\\'")}',
-            '${product.description.replace(/'/g, "\\'")}',
-            ${product.price},
-            '${product.image}',
-            ${product.isSale || false},
-            '${product.category || ''}'
-          )">Edit</button>
-          <button class="delete-btn" onclick="deleteProduct('${product._id}')">Delete</button>
-        </div>
-      `;
+      const card = renderProductCard(product); // use reusable function
       grid.appendChild(card);
     });
   } catch (err) {
@@ -54,12 +83,13 @@ async function addOrUpdateProduct(e) {
   const id = document.getElementById('product-id').value;
   const name = document.getElementById('name').value;
   const description = document.getElementById('description').value;
-  const price = document.getElementById('price').value;
+  const price = parseFloat(document.getElementById('price').value);
   const image = document.getElementById('image').value;
   const isSale = document.getElementById('isSale').checked;
+  const discount = isSale ? parseFloat(discountInput.value) || 0 : 0;
   const category = document.getElementById('category').value;
 
-  const productData = { name, description, price, image, isSale, category };
+  const productData = { name, description, price, image, isSale, discount, category };
 
   try {
     let res;
@@ -80,6 +110,7 @@ async function addOrUpdateProduct(e) {
     if (!res.ok) throw new Error('Request failed');
 
     form.reset();
+    discountInput.style.display = 'none';
     document.getElementById('product-id').value = '';
     formTitle.textContent = 'Add New Product';
     cancelEditBtn.style.display = 'none';
@@ -105,14 +136,16 @@ async function deleteProduct(id) {
   }
 }
 
-// Edit product (global for inline onclick)
-window.editProduct = function (id, name, description, price, image, isSale, category) {
+// Edit product
+window.editProduct = function (id, name, description, price, image, isSale, discount, category) {
   document.getElementById('product-id').value = id;
   document.getElementById('name').value = name;
   document.getElementById('description').value = description;
   document.getElementById('price').value = price;
   document.getElementById('image').value = image;
   document.getElementById('isSale').checked = isSale === true || isSale === 'true';
+  discountInput.style.display = isSale ? 'block' : 'none';
+  discountInput.value = discount || 0;
   document.getElementById('category').value = category;
 
   formTitle.textContent = 'Edit Product';
@@ -124,6 +157,7 @@ window.editProduct = function (id, name, description, price, image, isSale, cate
 cancelEditBtn.addEventListener('click', () => {
   form.reset();
   document.getElementById('product-id').value = '';
+  discountInput.style.display = 'none';
   formTitle.textContent = 'Add New Product';
   cancelEditBtn.style.display = 'none';
   submitBtn.textContent = 'Add Product';

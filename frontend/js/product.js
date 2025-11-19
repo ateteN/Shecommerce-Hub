@@ -21,13 +21,20 @@ async function renderProduct() {
     return;
   }
 
+  // Calculate sale price
+  let priceHTML = `$${product.price.toFixed(2)}`;
+  if (product.isSale && product.discount) {
+    const discountedPrice = (product.price * (1 - product.discount / 100)).toFixed(2);
+    priceHTML = `<span class="original-price">$${product.price.toFixed(2)}</span> $${discountedPrice}`;
+  }
+
   container.innerHTML = `
     <div class="product-detail-card">
       <img src="${product.image}" alt="${product.name}" />
       <div class="product-info">
         <h2>${product.name}</h2>
         <p>${product.description || "No description available"}</p>
-        <p class="price">$${product.price}</p>
+        <p class="price">${priceHTML}</p>
         <div class="quantity-control">
           <button id="decrease-qty">-</button>
           <input type="number" id="product-qty" value="1" min="1" />
@@ -50,14 +57,20 @@ async function renderProduct() {
   // Add to cart functionality
   document.getElementById("add-to-cart-btn").addEventListener("click", () => {
     const quantity = parseInt(qtyInput.value);
+    let finalPrice = product.price;
+    if (product.isSale && product.discount) finalPrice = product.price * (1 - product.discount / 100);
 
     const cartItem = {
-      id: product._id || product.id,
-      name: product.name,
-      price: product.price,
-      image: product.image,
-      quantity: quantity
-    };
+  id: product._id ? product._id : `mock_${product.id}`, // ensure unique
+  name: product.name,
+  price: finalPrice,
+  originalPrice: product.price,
+  image: product.image,
+  quantity: quantity,
+  isSale: product.isSale || false,
+  discount: product.discount || 0
+};
+
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     const existing = cart.find(p => p.id === cartItem.id);

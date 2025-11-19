@@ -356,3 +356,19 @@ main h2 {
         width: 100%;
     }
 }
+
+.original-price {
+  text-decoration: line-through;
+  color: gray;
+  margin-right: 5px;
+}
+.sale-tag {
+  background-color: red;
+  color: white;
+  padding: 2px 5px;
+  font-size: 0.8rem;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 3px;
+}

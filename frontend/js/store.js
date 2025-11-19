@@ -17,6 +17,7 @@ async function loadProducts() {
       card.classList.add('product-card');
 
       const saleTag = product.isSale ? '<div class="sale-tag">SALE</div>' : '';
+      const categoryTag = product.category ? `<p class="category-tag">${product.category.toUpperCase()}</p>` : '';
 
       card.innerHTML = `
         ${saleTag}
@@ -24,6 +25,7 @@ async function loadProducts() {
         <h3>${product.name}</h3>
         <p>${product.description}</p>
         <p class="price">$${parseFloat(product.price).toFixed(2)}</p>
+        ${categoryTag}
         <div class="card-actions">
           <button class="edit-btn" onclick="editProduct(
             '${product._id}',
@@ -31,7 +33,8 @@ async function loadProducts() {
             '${product.description.replace(/'/g, "\\'")}',
             ${product.price},
             '${product.image}',
-            ${product.isSale || false}
+            ${product.isSale || false},
+            '${product.category || ''}'
           )">Edit</button>
           <button class="delete-btn" onclick="deleteProduct('${product._id}')">Delete</button>
         </div>
@@ -54,8 +57,9 @@ async function addOrUpdateProduct(e) {
   const price = document.getElementById('price').value;
   const image = document.getElementById('image').value;
   const isSale = document.getElementById('isSale').checked;
+  const category = document.getElementById('category').value;
 
-  const productData = { name, description, price, image, isSale };
+  const productData = { name, description, price, image, isSale, category };
 
   try {
     let res;
@@ -102,13 +106,14 @@ async function deleteProduct(id) {
 }
 
 // Edit product (global for inline onclick)
-window.editProduct = function (id, name, description, price, image, isSale) {
+window.editProduct = function (id, name, description, price, image, isSale, category) {
   document.getElementById('product-id').value = id;
   document.getElementById('name').value = name;
   document.getElementById('description').value = description;
   document.getElementById('price').value = price;
   document.getElementById('image').value = image;
   document.getElementById('isSale').checked = isSale === true || isSale === 'true';
+  document.getElementById('category').value = category;
 
   formTitle.textContent = 'Edit Product';
   cancelEditBtn.style.display = 'inline-block';

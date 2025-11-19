@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 
 // ADD a new product
 router.post('/', async (req, res) => {
-  const { name, description, price, image, user } = req.body; // user is optional
+  const { name, description, price, image, category } = req.body;
   if (!name || !description || !price || !image) {
     return res.status(400).json({ msg: 'Please provide all required fields' });
   }
@@ -26,7 +26,7 @@ router.post('/', async (req, res) => {
       description,
       price,
       image,
-      user: user || null, // keep null if no user provided
+      category: category || "others"
     });
     await product.save();
     res.json(product);
@@ -38,12 +38,12 @@ router.post('/', async (req, res) => {
 
 // EDIT a product
 router.put('/:id', async (req, res) => {
-  const { name, description, price, image } = req.body;
+  const { name, description, price, image, category } = req.body;
 
   try {
     const updatedProduct = await Product.findByIdAndUpdate(
       req.params.id,
-      { name, description, price, image },
+      { name, description, price, image, category },
       { new: true }
     );
     if (!updatedProduct) return res.status(404).json({ msg: 'Product not found' });
@@ -53,6 +53,7 @@ router.put('/:id', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
 
 // DELETE a product
 router.delete('/:id', async (req, res) => {

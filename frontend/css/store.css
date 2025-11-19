@@ -300,6 +300,32 @@ h1, h2 {
     transition: background-color 0.3s ease;
 }
 
+/* --- CATEGORY SELECT BOX STYLING --- */
+#product-form select {
+    /* Base styling for all primary inputs */
+    padding: 14px 18px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    font-size: 1em;
+    color: var(--color-text-dark);
+    font-family: var(--font-sans);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    -webkit-appearance: none; /* Removes default dropdown arrow in WebKit browsers */
+    -moz-appearance: none;    /* Removes default dropdown arrow in Firefox */
+    appearance: none;         /* Standard way to remove default styling */
+    background-color: var(--color-background-white);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23a08c79'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E"); /* Custom SVG arrow (dusty brown) */
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 15px;
+}
+
+#product-form select option {
+    /* Ensure options look clean */
+    padding: 10px;
+}
+
 #submit-btn {
     background-color: var(--color-accent-brown);
     color: var(--color-text-light);

@@ -13,8 +13,14 @@ exports.getProducts = async (req, res) => {
 // Create new product
 exports.createProduct = async (req, res) => {
   try {
-    const { name, description, price, image } = req.body;
-    const newProduct = new Product({ name, description, price, image });
+    const { name, description, price, image, category } = req.body;
+    const newProduct = new Product({ 
+      name, 
+      description, 
+      price, 
+      image,
+      category: category || "others" // default if not provided
+    });
     await newProduct.save();
     res.status(201).json(newProduct);
   } catch (err) {
@@ -26,7 +32,12 @@ exports.createProduct = async (req, res) => {
 exports.updateProduct = async (req, res) => {
   try {
     const { id } = req.params;
-    const updated = await Product.findByIdAndUpdate(id, req.body, { new: true });
+    const { name, description, price, image, category } = req.body;
+    const updated = await Product.findByIdAndUpdate(
+      id,
+      { name, description, price, image, category },
+      { new: true }
+    );
     res.json(updated);
   } catch (err) {
     res.status(400).json({ message: err.message });

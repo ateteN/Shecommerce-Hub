@@ -1,19 +1,17 @@
 import { getProducts } from "./api.js";
 
 const grid = document.getElementById("products-grid");
-
-// --- SELECTED CATEGORY FROM LOCALSTORAGE ---
 const selectedCategory = localStorage.getItem("selectedCategory");
 
-// --- MOCK PRODUCTS WITH CATEGORY AND SALE EXAMPLES ---
+// --- MOCK PRODUCTS WITH SALE EXAMPLES ---
 const mockProducts = [
-  { id: "m1", name: "Wireless Headphones", price: 39.99, image: "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=SmFOSTFzWmdkMW1XWjFUWXBDRzdBd2tuVHYzMERCZURia3c5SzJFOTlPZ3oveDdpQVpwS0ltY2w2UW05aU90T0huV2F0aExud1Z0YndiMUgwNXJZQnc", category: "technology", isSale: true, discount: 20 },
-  { id: "m2", name: "Sports Sneakers", price: 59.99, image: "https://www.running-point.co.uk/dw/image/v2/BBDP_PRD/on/demandware.static/-/Sites-master-catalog/default/dw899643dd/images/004/163/17270000_0_3.jpg?q=80&sw=2000", category: "sports", isSale: false, discount: 0 },
-  { id: "m3", name: "Smart Watch", price: 29.99, image: "https://uribaba.co.in/wp-content/uploads/2023/07/SW-2865-12.jpg", category: "technology", isSale: true, discount: 15 },
-  { id: "m4", name: "Makeup Kit", price: 19.99, image: "https://m.media-amazon.com/images/I/7181-vy8HUL._SL1500_.jpg", category: "beauty", isSale: false, discount: 0 }
+  { id: "mock_m1", name: "Wireless Headphones", price: 39.99, image: "https://store.storeimages.cdn-apple.com/1/as-images.apple.com/is/MQTR3?wid=1144&hei=1144&fmt=jpeg&qlt=90&.v=SmFOSTFzWmdkMW1XWjFUWXBDRzdBd2tuVHYzMERCZURia3c5SzJFOTlPZ3oveDdpQVpwS0ltY2w2UW05aU90T0huV2F0aExud1Z0YndiMUgwNXJZQnc", category: "technology", isSale: true, discount: 20 },
+  { id: "mock_m2", name: "Sports Sneakers", price: 59.99, image: "https://www.running-point.co.uk/dw/image/v2/BBDP_PRD/on/demandware.static/-/Sites-master-catalog/default/dw899643dd/images/004/163/17270000_0_3.jpg?q=80&sw=2000", category: "sports", isSale: false, discount: 0 },
+  { id: "mock_m3", name: "Smart Watch", price: 29.99, image: "https://uribaba.co.in/wp-content/uploads/2023/07/SW-2865-12.jpg", category: "technology", isSale: true, discount: 15 },
+  { id: "mock_m4", name: "Makeup Kit", price: 19.99, image: "https://m.media-amazon.com/images/I/7181-vy8HUL._SL1500_.jpg", category: "beauty", isSale: false, discount: 0 }
 ];
 
-// --- HELPER: CREATE PRODUCT CARD ---
+// --- CREATE PRODUCT CARD ---
 function renderProductCard(product) {
   let saleTag = '';
   let priceHTML = `<p class="price">$${parseFloat(product.price).toFixed(2)}</p>`;
@@ -47,7 +45,6 @@ function renderProductCard(product) {
 // --- RENDER PRODUCTS ---
 async function renderProducts() {
   let backendProducts = [];
-
   try {
     backendProducts = await getProducts();
   } catch (err) {
@@ -55,8 +52,8 @@ async function renderProducts() {
   }
 
   const combined = [
-    ...backendProducts.map(p => ({ ...p, id: p._id })),
-    ...mockProducts
+    ...backendProducts.map(p => ({ ...p, id: p._id })), // backend IDs
+    ...mockProducts                                  // mock IDs prefixed
   ];
 
   let filtered = combined;
@@ -70,10 +67,7 @@ async function renderProducts() {
     return;
   }
 
-  filtered.forEach(p => {
-    const card = renderProductCard(p);
-    grid.appendChild(card);
-  });
+  filtered.forEach(p => grid.appendChild(renderProductCard(p)));
 }
 
 // --- INITIAL RENDER ---

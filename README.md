@@ -66,21 +66,17 @@ Add new products, Edit existing products, Update images, prices, discounts, and 
 ## Getting started
 
 1. clone the Repository: 
-`git clone https://github.com/yourusername/she-commerce-hub.git
-cd Shecommerce-Hub`
+`git clone https://github.com/yourusername/she-commerce-hub.git`
+`cd Shecommerce-Hub`
 
-2. Install the Backend Dependencies
-`cd backend
-npm install`
+3. Install the Backend Dependencies
+`cd backend`
+`npm install`
 
-3. Start the Backend Server
+4. Start the Backend Server
 `npm run dev`
 
-4. After starting the backend server successfully, go to the project link "https://shecommerce-hub.vercel.app/index.html" and Refresh the page until you see the backend products.
-
-OR 
-
-simply Open the index.html file using the VSCode Live Server. frontend/index.html.
+5. After starting the backend server successfully you can use the vscode Live server to view frontend/index.html file. **OR** go to the project link "https://shecommerce-hub.vercel.app/index.html" and Refresh the page until you see the backend products.
 
 ### Author
 She-Commerce Hub by Atete Norette

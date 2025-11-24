@@ -15,65 +15,98 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const finalAuthHTML = (user && token) ? userLinksHTML(user) : authLinksHTML;
 
-  // --- Dropdown CSS for hover (FIXED) ---
-  const dropdownStyles = `
-    <style>
-      .has-dropdown { position: relative; cursor: pointer; }
-      .has-dropdown > a { display: inline-block; padding: 5px 10px; user-select: none; }
+/* --- Dropdown + Search CSS --- */
+const styles = `
+  <style>
+    .has-dropdown { position: relative; cursor: pointer; }
+    .has-dropdown > a { display: inline-block; padding: 5px 10px; user-select: none; }
 
-      .dropdown-menu {
-        /*
-          CRITICAL FIX: Changed initial 'display: none' to 'visibility: hidden;' 
-          and adjusted hover rule to use 'visibility: visible;'. 
-          This prevents the element from interfering with the layout (like 'display: none'), 
-          but prevents the flicker/rendering issue you are seeing on load.
-        */
-        visibility: hidden; /* Start hidden without affecting layout space */
-        opacity: 0; /* Add for smooth transition (optional) */
-        transition: opacity 0.2s; /* Add transition for smoothness (optional) */
-        
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background: #fff;
-        border: 1px solid #ddd;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        min-width: 150px;
-        /* Removed flex-direction: column; as it's not strictly necessary for simple vertical lists */
-        z-index: 10;
-      }
+    /* --- DROPDOWN MENU FIX AND STYLE --- */
+    .dropdown-menu {
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity 0.2s;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: var(--color-background-white); /* White background */
+      border: 1px solid var(--color-border-light); /* Light border */
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      min-width: 180px;
+      z-index: 10;
+      /* FIX: Override parent flex container for vertical stacking */
+      display: block; 
+      flex-direction: column; /* Ensure vertical stacking */
+      text-align: left;
+    }
 
-      .dropdown-menu li {
-        padding: 10px;
-        cursor: pointer;
-        white-space: nowrap;
-        display: block; /* Ensure list items behave like blocks inside the menu */
-      }
+    .dropdown-menu li {
+      padding: 10px 15px;
+      cursor: pointer;
+      white-space: nowrap;
+      font-size: 0.95em;
+      border-bottom: 1px solid #f9f9f9; /* Subtle separator */
+    }
 
-      .dropdown-menu li:hover {
-        background-color: #f2f2f2;
-      }
+    .dropdown-menu li:last-child {
+      border-bottom: none;
+    }
 
-      /* Show dropdown on hover */
-      .has-dropdown:hover .dropdown-menu {
-        visibility: visible; /* Show menu */
-        opacity: 1; /* Fade in (optional) */
-      }
-      
-      /* New style to ensure the list items are vertical */
-      #categories-dropdown > .dropdown-menu {
-        display: block; /* Use block display for the main menu container */
-      }
-      
-    </style>
-  `;
+    .dropdown-menu li:hover {
+      background-color: var(--color-light-grey); /* Light grey hover */
+      color: var(--color-dark-brown);
+    }
+
+    .has-dropdown:hover .dropdown-menu {
+      visibility: visible;
+      opacity: 1;
+    }
+
+    /* --- SEARCH BAR STYLE --- */
+    .navbar-search {
+      display: inline-flex;
+      align-items: center;
+      margin-right: 15px;
+      border: 1px solid var(--color-border-light); /* Enclose the whole search box */
+      border-radius: 0;
+      overflow: hidden; /* Ensure clean edges */
+    }
+
+    .navbar-search input {
+      padding: 6px 10px;
+      border: none; /* Remove individual border */
+      outline: none;
+      width: 180px;
+      font-size: 0.95em;
+      font-family: var(--font-sans);
+    }
+
+    .navbar-search button {
+      padding: 6px 12px;
+      border: none;
+      background-color: var(--color-dark-brown); /* Brown background for button */
+      color: var(--color-text-light); /* Light text on button */
+      cursor: pointer;
+      font-weight: var(--font-weight-medium);
+      text-transform: uppercase;
+      font-size: 0.9em;
+      transition: background-color 0.2s ease;
+    }
+
+    .navbar-search button:hover {
+      background-color: var(--color-accent-brown); /* Lighter brown on hover */
+    }
+
+    .main-menu ul { display: flex; align-items: center; gap: 15px; }
+  </style>
+`;
 
   // --- Navbar HTML ---
   navbarEl.innerHTML = `
-    ${dropdownStyles}
+    ${styles}
     <div class="header-middle">
       <h1 class="logo">SHE-COMMERCE</h1>
     </div>
@@ -95,7 +128,13 @@ document.addEventListener("DOMContentLoaded", () => {
               <li data-category="others">Others</li>
             </ul>
           </li>
-          <li><a href="about.html">ABOUT</a></li>
+
+          <!-- SEARCH BAR BEFORE CART -->
+          <li class="navbar-search">
+            <input type="text" id="search-input" placeholder="Search products...">
+            <button id="search-btn">Search</button>
+          </li>
+
           <li><a href="cart.html">CART</a></li> 
           ${finalAuthHTML}
         </ul>
@@ -103,11 +142,12 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   `;
 
-  // --- Re-select elements ---
   const logoutBtn = document.getElementById("logout");
   const homeLink = document.getElementById("home-link");
+  const searchInput = document.getElementById("search-input");
+  const searchBtn = document.getElementById("search-btn");
 
-  // Authentication/Logout Logic (Kept as is)
+  // --- Logout ---
   logoutBtn?.addEventListener("click", (e) => {
     e.preventDefault(); 
     localStorage.removeItem("user");
@@ -116,18 +156,32 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // --- CATEGORY CLICK ---
-  const dropdownItems = document.querySelectorAll(".dropdown-menu li");
-  dropdownItems.forEach(item => {
+  document.querySelectorAll(".dropdown-menu li").forEach(item => {
     item.addEventListener("click", () => {
       const category = item.getAttribute("data-category");
       localStorage.setItem("selectedCategory", category);
-      window.location.href = "index.html"; // go to homepage filtered
+      localStorage.removeItem("searchQuery");
+      window.location.href = "index.html";
     });
   });
 
-  // --- HOME CLICK: clear selected category ---
+  // --- HOME CLICK ---
   homeLink.addEventListener("click", () => {
-    // This uses event delegation on the <li> wrapper to ensure the removal happens
     localStorage.removeItem("selectedCategory");
+    localStorage.removeItem("searchQuery");
+  });
+
+  // --- SEARCH BUTTON CLICK ---
+  searchBtn.addEventListener("click", () => {
+    const query = searchInput.value.trim();
+    if(query) localStorage.setItem("searchQuery", query);
+    else localStorage.removeItem("searchQuery");
+    localStorage.removeItem("selectedCategory"); // clear category filter
+    window.location.href = "index.html";
+  });
+
+  // --- PRESS ENTER KEY ---
+  searchInput.addEventListener("keypress", (e) => {
+    if(e.key === "Enter") searchBtn.click();
   });
 });

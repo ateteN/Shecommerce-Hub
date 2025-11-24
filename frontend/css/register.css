@@ -1,20 +1,16 @@
-/* ========================================================================= */
-/* 0. GLOBAL IMPORTS, VARIABLES & BASE RESET */
-/* ========================================================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@300;400;700&display=swap');
 
 :root {
-    /* Color Palette */
+    
     --color-background-white: #ffffff;
     --color-text-dark: #333333;
     --color-text-light: #f5f5f5;
-    --color-accent-brown: #a08c79; /* Used for buttons/accents */
-    --color-dark-brown: #8b6e5e; /* Earthy/Brown tone for buttons/focus */
+    --color-accent-brown: #a08c79; 
+    --color-dark-brown: #8b6e5e; 
     --color-border-light: #e0e0e0;
     --color-light-grey: #f0f0f0;
 
-    /* Typography */
+    
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Roboto', sans-serif;
     --font-weight-regular: 400;
@@ -29,7 +25,7 @@
 }
 
 body {
-    /* Uses variables for consistency */
+    
     font-family: var(--font-sans);
     color: var(--color-text-dark);
     background-color: var(--color-background-white);
@@ -46,15 +42,15 @@ a:hover {
     color: var(--color-accent-brown);
 }
 
-/* Headings will use the serif font */
+
 h1, h2, h3 {
     font-family: var(--font-serif);
     font-weight: var(--font-weight-regular);
 }
 
-/* ========================================================================= */
-/* 1. NAVBAR STYLES (UNCHANGED BLOCK AS REQUESTED) */
-/* ========================================================================= */
+
+
+
 
 #navbar {
     width: 100%;
@@ -179,11 +175,11 @@ h1, h2, h3 {
 }
 
 
-/* ========================================================================= */
-/* 2. REGISTER FORM CARD STYLING */
-/* ========================================================================= */
 
-/* Center the form content below the navbar */
+
+
+
+
 body > h1, 
 body > form, 
 body > p#register-msg {
@@ -207,13 +203,13 @@ h1 {
     background: var(--color-background-white);
     padding: 40px;
     border: 1px solid var(--color-border-light);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Subtle lift */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); 
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Space between fields */
+    gap: 20px; 
 }
 
-/* Input Fields */
+
 #register-form input {
     padding: 14px 18px;
     border: 1px solid #ccc;
@@ -225,12 +221,12 @@ h1 {
 }
 
 #register-form input:focus {
-    border-color: var(--color-accent-brown); /* Dusty brown on focus */
+    border-color: var(--color-accent-brown); 
     outline: none;
     box-shadow: 0 0 0 1px var(--color-accent-brown);
 }
 
-/* Submit Button */
+
 #register-form button[type="submit"] {
     background-color: var(--color-dark-brown);
     color: var(--color-text-light);
@@ -249,11 +245,11 @@ h1 {
     background-color: var(--color-accent-brown);
 }
 
-/* Message Area */
+
 #register-msg {
     text-align: center;
     margin-top: 20px;
     font-size: 1em;
-    color: #cc0000; /* Use a standard error color if needed */
+    color: #cc0000; 
     font-weight: var(--font-weight-medium);
 }

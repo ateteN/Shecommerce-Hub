@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@300;400;700&display=swap');
 
 :root {
-    /* Color Palette */
+    
     --color-background-white: #ffffff;
     --color-text-dark: #333333;
     --color-text-light: #f5f5f5;
-    --color-accent-brown: #a08c79; /* Used for buttons/accents */
-    --color-dark-brown: #8b6e5e; /* Earthy/Brown tone for buttons/focus */
+    --color-accent-brown: #a08c79; 
+    --color-dark-brown: #8b6e5e; 
     --color-border-light: #e0e0e0;
     --color-light-grey: #f0f0f0;
 
-    /* Typography */
+    
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Roboto', sans-serif;
     --font-weight-regular: 400;
@@ -25,7 +25,7 @@
 }
 
 body {
-    /* Uses variables for consistency */
+    
     font-family: var(--font-sans);
     color: var(--color-text-dark);
     background-color: var(--color-background-white);
@@ -42,15 +42,15 @@ a:hover {
     color: var(--color-accent-brown);
 }
 
-/* Headings will use the serif font */
+
 h1, h2, h3 {
     font-family: var(--font-serif);
     font-weight: var(--font-weight-regular);
 }
 
-/* ========================================================================= */
-/* 1. NAVBAR STYLES (UNCHANGED BLOCK AS REQUESTED) */
-/* ========================================================================= */
+
+
+
 
 #navbar {
     width: 100%;
@@ -174,10 +174,10 @@ h1, h2, h3 {
     }
 }
 
-/* PRODUCT DETAILS STYLING */
-/* ========================================================================= */
-/* PRODUCT DETAIL LAYOUT AND CARD */
-/* ========================================================================= */
+
+
+
+
 
 .product-detail-container {
     padding: 40px 20px;
@@ -185,17 +185,17 @@ h1, h2, h3 {
 
 .product-detail-card {
     display: flex;
-    flex-direction: row; /* Default to side-by-side layout */
+    flex-direction: row; 
     gap: 50px;
     background: var(--color-background-white);
     padding: 30px;
     border: 1px solid var(--color-border-light);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); /* Subtle elegance */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03); 
 }
 
-/* --- Product Image Section --- */
+
 .product-detail-card img {
-    flex: 1 1 50%; /* Image takes up half the width */
+    flex: 1 1 50%; 
     max-height: 600px;
     width: 100%;
     object-fit: cover;
@@ -203,9 +203,9 @@ h1, h2, h3 {
     border: 1px solid var(--color-border-light);
 }
 
-/* --- Product Info Section --- */
+
 .product-info {
-    flex: 1 1 50%; /* Info takes up the other half */
+    flex: 1 1 50%; 
     padding: 20px 0;
 }
 
@@ -224,7 +224,7 @@ h1, h2, h3 {
     margin-bottom: 25px;
 }
 
-/* Price Tag */
+
 .product-info .price {
     font-family: var(--font-serif);
     font-size: 2.2em;
@@ -233,9 +233,9 @@ h1, h2, h3 {
     margin: 30px 0;
 }
 
-/* --- Add to Cart Button (Reusing the 'View Product' style) --- */
+
 .view-product-btn {
-    /* Style consistency with the homepage buttons */
+    
     background-color: var(--color-dark-brown);
     color: var(--color-text-light);
     border: 2px solid var(--color-dark-brown);
@@ -245,9 +245,9 @@ h1, h2, h3 {
     letter-spacing: 1px;
     cursor: pointer;
     transition: all 0.3s ease;
-    display: block; /* Make it a block element for full width or use a max-width */
+    display: block; 
     width: 100%;
-    max-width: 400px; /* Control the button size on desktop */
+    max-width: 400px; 
     margin-top: 40px;
 }
 
@@ -256,12 +256,12 @@ h1, h2, h3 {
     border-color: var(--color-accent-brown);
 }
 
-/* ========================================================================= */
-/* RESPONSIVENESS */
-/* ========================================================================= */
+
+
+
 @media (max-width: 900px) {
     .product-detail-card {
-        flex-direction: column; /* Stack image and info vertically on smaller screens */
+        flex-direction: column; 
         padding: 20px;
         gap: 30px;
     }
@@ -279,7 +279,7 @@ h1, h2, h3 {
     }
 
     .view-product-btn {
-        max-width: none; /* Let the button stretch to full width of the info block */
+        max-width: none; 
     }
 }
 

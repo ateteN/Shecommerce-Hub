@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const finalAuthHTML = (user && token) ? userLinksHTML(user) : authLinksHTML;
 
-/* --- Dropdown + Search CSS --- */
+/* --- Dropdown and search CSS --- */
 const styles = `
   <style>
     .has-dropdown { position: relative; cursor: pointer; }
@@ -65,7 +65,7 @@ const styles = `
       opacity: 1;
     }
 
-    /* --- SEARCH BAR STYLE --- */
+    /* --- SEARCH BAR styling --- */
     .navbar-search {
       display: inline-flex;
       align-items: center;
@@ -180,7 +180,7 @@ const styles = `
     window.location.href = "index.html";
   });
 
-  // --- PRESS ENTER KEY ---
+  // --- ENTER KEY ---
   searchInput.addEventListener("keypress", (e) => {
     if(e.key === "Enter") searchBtn.click();
   });

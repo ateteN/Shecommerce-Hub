@@ -1,20 +1,16 @@
-/* ========================================================================= */
-/* 0. GLOBAL IMPORTS, VARIABLES & BASE RESET */
-/* ========================================================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:wght@300;400;700&display=swap');
 
 :root {
-    /* Color Palette */
+    
     --color-background-white: #ffffff;
     --color-text-dark: #333333;
     --color-text-light: #f5f5f5;
-    --color-accent-brown: #a08c79; /* Used for buttons/accents */
-    --color-dark-brown: #8b6e5e; /* Earthy/Brown tone for buttons/focus */
+    --color-accent-brown: #a08c79; 
+    --color-dark-brown: #8b6e5e; 
     --color-border-light: #e0e0e0;
     --color-light-grey: #f0f0f0;
 
-    /* Typography */
+    
     --font-serif: 'Playfair Display', serif;
     --font-sans: 'Roboto', sans-serif;
     --font-weight-regular: 400;
@@ -29,7 +25,7 @@
 }
 
 body {
-    /* Uses variables for consistency */
+    
     font-family: var(--font-sans);
     color: var(--color-text-dark);
     background-color: var(--color-background-white);
@@ -46,15 +42,15 @@ a:hover {
     color: var(--color-accent-brown);
 }
 
-/* Headings will use the serif font */
+
 h1, h2, h3 {
     font-family: var(--font-serif);
     font-weight: var(--font-weight-regular);
 }
 
-/* ========================================================================= */
-/* 1. NAVBAR STYLES (UNCHANGED BLOCK AS REQUESTED) */
-/* ========================================================================= */
+
+
+
 
 #navbar {
     width: 100%;
@@ -178,17 +174,17 @@ h1, h2, h3 {
     }
 }
 
-/* ========================================================================= */
-/* 2. ADMIN STORE PAGE STYLES */
-/* ========================================================================= */
+
+
+
 
 .store-container {
-    max-width: 1000px; /* Max-width adjusted for admin view */
+    max-width: 1000px; 
     margin: 0 auto;
     padding: 20px;
 }
 
-/* --- Store Header (My Store) --- */
+
 .store-header {
     text-align: left;
     margin-bottom: 30px;
@@ -208,15 +204,15 @@ h1, h2, h3 {
     font-style: italic;
 }
 
-/* --- Product Form (Add/Edit Product) --- */
+
 .product-form-section {
     background: var(--color-background-white);
     padding: 2.5rem;
     border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05); /* Subtle shadow */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
     max-width: 500px;
     margin: 2rem auto;
-    border: 1px solid var(--color-border-light); /* Added border back */
+    border: 1px solid var(--color-border-light); 
 }
 
 #form-title {
@@ -270,7 +266,7 @@ h1, h2, h3 {
     cursor: pointer;
 }
 
-/* Button Styling */
+
 #product-form button {
     background-color: var(--color-dark-brown);
     color: var(--color-text-light);
@@ -284,10 +280,10 @@ h1, h2, h3 {
 }
 
 #product-form button:hover {
-    background-color: #6a4e3e; /* Darker hover for earth tone */
+    background-color: #6a4e3e; 
 }
 
-/* Cancel button specific style */
+
 #cancel-edit {
     background-color: var(--color-light-grey);
     color: var(--color-text-dark);
@@ -297,10 +293,10 @@ h1, h2, h3 {
     background-color: #ccc;
 }
 
-/* --- Product Grid & Card (Admin/Store View) --- */
+
 #store-grid {
     display: grid;
-    /* 3 columns for a clean admin look */
+    
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
     padding: 20px 0;
@@ -325,7 +321,7 @@ h1, h2, h3 {
 
 .product-card img {
     width: 100%;
-    height: 250px; /* Fixed height for admin view */
+    height: 250px; 
     object-fit: cover;
     background-color: #fcfcfc;
     display: block;
@@ -336,7 +332,7 @@ h1, h2, h3 {
 }
 
 .product-details h3 {
-    font-family: var(--font-sans); /* Use sans-serif for product titles in admin view */
+    font-family: var(--font-sans); 
     font-size: 1.1em;
     font-weight: var(--font-weight-medium);
     margin: 0 0 5px 0;
@@ -347,7 +343,7 @@ h1, h2, h3 {
     font-size: 0.9em;
     color: #666;
     margin-bottom: 8px;
-    /* Ensure descriptions don't make cards unevenly tall */
+    
     max-height: 3.6em;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -360,7 +356,7 @@ h1, h2, h3 {
     margin-bottom: 15px;
 }
 
-/* Sale Tag Styling */
+
 .sale-tag {
     position: absolute;
     top: 15px;
@@ -374,7 +370,7 @@ h1, h2, h3 {
     z-index: 10;
 }
 
-/* Admin Actions (Edit/Delete Buttons) */
+
 .card-actions {
     display: flex;
     justify-content: flex-end;
@@ -403,7 +399,7 @@ h1, h2, h3 {
 }
 
 .card-actions button.delete-btn {
-    background-color: #dc3545; /* Red for delete */
+    background-color: #dc3545; 
     color: var(--color-text-light);
     border-color: #dc3545;
 }
@@ -414,9 +410,9 @@ h1, h2, h3 {
 }
 
 
-/* ========================================================================= */
-/* 3. MARKETPLACE PAGE STYLES (index.html, uses shared card styles) */
-/* ========================================================================= */
+
+
+
 
 main {
     max-width: 1200px;
@@ -424,7 +420,7 @@ main {
     padding: 20px;
 }
 
-/* Page Title Styling */
+
 main h1 {
     text-align: center;
     font-size: 2.5em;
@@ -435,7 +431,7 @@ main h1 {
     border-bottom: 1px solid var(--color-border-light);
 }
 
-/* Product Grid Container */
+
 #products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -443,7 +439,7 @@ main h1 {
     padding: 20px 0;
 }
 
-/* Buy Button Styling (for public marketplace) */
+
 .product-card .buy-btn {
     background-color: var(--color-dark-brown);
     color: var(--color-text-light);
@@ -464,12 +460,12 @@ main h1 {
     background-color: #6a4e3e;
 }
 
-/* Ensure the card actions (edit/delete) are hidden on the public marketplace page */
+
 .product-card .card-actions {
     display: none;
 }
 
-/* Footer Styling */
+
 .footer {
     text-align: center;
     padding: 20px;
@@ -479,7 +475,7 @@ main h1 {
     font-size: 0.85em;
 }
 
-/* Product Grid */
+
 .products-grid {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -487,21 +483,21 @@ main h1 {
     padding: 20px;
 }
 
-/* Tablets */
+
 @media (min-width: 600px) {
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Laptops/Desktop */
+
 @media (min-width: 900px) {
     .products-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
-/* BANNER CAROUSEL */
+
 
 .banner-carousel {
   position: relative;
@@ -527,7 +523,7 @@ main h1 {
   display: block;
 }
 
-/* DOTS */
+
 .carousel-dots {
   position: absolute;
   bottom: 5px;
@@ -548,7 +544,7 @@ main h1 {
 .carousel-dots .dot.active {
   background: #bfa36c;
 }
-/* Specific class version */
+
 .view-product-btn {
   display: inline-block;
   background-color: #fff; 
@@ -564,16 +560,16 @@ main h1 {
 }
 
 .view-product-btn:hover {
-  background-color: #bfa36c; /* darker on hover */
+  background-color: #bfa36c; 
   color: #fff;
 }
 
-/* ========================================================================= */
-/* FAQ SECTION STYLING */
-/* ========================================================================= */
+
+
+
 .faq-section {
     max-width: 900px;
-    margin: 50px auto 80px auto; /* Centered, with bottom spacing */
+    margin: 50px auto 80px auto; 
     padding: 20px;
 }
 
@@ -598,12 +594,12 @@ main h1 {
 }
 
 .faq-item summary {
-    /* The Question */
+    
     padding: 15px 20px;
     font-weight: var(--font-weight-medium);
     font-size: 1.1em;
     color: var(--color-text-dark);
-    list-style: none; /* Hide default arrow/icon */
+    list-style: none; 
     position: relative;
     user-select: none;
     transition: background-color 0.2s ease;
@@ -613,7 +609,7 @@ main h1 {
     background-color: var(--color-light-grey);
 }
 
-/* Custom indicator for the dropdown */
+
 .faq-item summary::after {
     content: '+';
     font-size: 1.5em;
@@ -621,37 +617,37 @@ main h1 {
     right: 20px;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--color-accent-brown); /* Dusty brown plus sign */
+    color: var(--color-accent-brown); 
     transition: transform 0.2s ease;
 }
 
-/* When the details are open, change the plus sign to a minus sign */
+
 .faq-item details[open] summary::after {
     content: '-';
     transform: translateY(-50%) rotate(0deg);
 }
 
 .faq-item details[open] summary {
-    /* Highlight the active question */
+    
     border-bottom: 1px solid var(--color-border-light);
     background-color: #fcfcfc;
 }
 
 .faq-item p {
-    /* The Answer */
+    
     padding: 15px 20px 20px 20px;
     font-size: 1em;
     color: #555;
     background-color: var(--color-background-white);
 }
 
-/* ========================================================================= */
-/* FOOTER STYLING */
-/* ========================================================================= */
+
+
+
 .footer {
     border-top: 1px solid var(--color-border-light);
     padding: 30px 20px;
-    background-color: #fcfcfc; /* Very light background */
+    background-color: #fcfcfc; 
     text-align: center;
     font-size: 0.9em;
     color: #777;
@@ -663,7 +659,7 @@ main h1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allows stacking on small screens */
+    flex-wrap: wrap; 
 }
 
 .footer-content p {

@@ -4,7 +4,7 @@ const container = document.getElementById("product-detail");
 const params = new URLSearchParams(window.location.search);
 const productId = params.get("id");
 
-// --- MOCK PRODUCTS (same as marketplace.js) ---
+// --- MOCK PRODUCTS  ---
 const mockProducts = [
   { 
     id: "mock_m1", 

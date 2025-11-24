@@ -1,4 +1,4 @@
-import { getProducts } from "./api.js"; // Your existing API helper
+import { getProducts } from "./api.js"; 
 
 document.addEventListener("DOMContentLoaded", async () => {
   const cartGrid = document.getElementById("cart-grid");
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // --- FETCH LATEST BACKEND PRODUCTS ---
+  // Fetch Products from the Backend
   let products = [];
   try {
     products = await getProducts();
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.error("Failed to fetch backend products:", err);
   }
 
-  // --- MOCK PRODUCTS (should match marketplace.js EXACTLY) ---
+  // MOCK PRODUCTS 
   const mockProducts = [
     { 
       id: "m1", 
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   ];
 
-  // Combine backend + mock
+  // backend + mock
   const allProducts = [
     ...products.map(p => ({
       id: p._id,
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       discount: p.discount || 0
     })),
     ...mockProducts.map(p => ({
-      id: p.id,               // KEEP original id (not "mock_x")
+      id: p.id,               
       name: p.name,
       price: p.price,
       image: p.image,
@@ -148,14 +148,15 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   // Checkout
   checkoutBtn.addEventListener("click", () => {
-    if (cart.length === 0) return alert("Cart is empty!");
+  if (cart.length === 0) return alert("Cart is empty!");
 
-    alert(`Checking out $${cartTotalEl.textContent}`);
+  //Success page
+  localStorage.setItem("checkoutTotal", cartTotalEl.textContent);
 
-    cart = [];
-    localStorage.removeItem("cart");
-    renderCart();
-  });
+  // Redirect to Flutterwave payment page
+  window.location.href = "https://sandbox.flutterwave.com/pay/shecommercepayment";
+});
+
 
   renderCart();
 });

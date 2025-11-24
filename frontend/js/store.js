@@ -13,7 +13,7 @@ isSaleCheckbox.addEventListener('change', () => {
   discountInput.style.display = isSaleCheckbox.checked ? 'block' : 'none';
 });
 
-// --- reusable function to render product cards ---
+// render product cards 
 function renderProductCard(product) {
   const card = document.createElement('div');
   card.classList.add('product-card');
@@ -59,7 +59,7 @@ function renderProductCard(product) {
   return card;
 }
 
-// Load all products
+// Load  products
 async function loadProducts() {
   try {
     const res = await fetch(API_URL);

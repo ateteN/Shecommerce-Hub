@@ -42,7 +42,7 @@ Add new products, Edit existing products, Update images, prices, discounts, and 
 
 - Home page
 
-![alt text](images/image-1.png)
+![alt text](images/image.png)
 ![alt text](images/image-1.png)
 
 - Product page

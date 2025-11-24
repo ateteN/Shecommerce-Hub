@@ -67,11 +67,10 @@ Add new products, Edit existing products, Update images, prices, discounts, and 
 
 1. clone the Repository: 
 `git clone https://github.com/yourusername/she-commerce-hub.git`
-`cd Shecommerce-Hub`
+ change to the directory `cd Shecommerce-Hub`
 
 3. Install the Backend Dependencies
-`cd backend`
-`npm install`
+`cd backend` then use code `npm install`
 
 4. Start the Backend Server
 `npm run dev`

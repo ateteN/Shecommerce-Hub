@@ -6,59 +6,66 @@
   <title>My Store | She-Commerce Hub</title>
   <link rel="stylesheet" href="css/store.css">
 </head>
-
 <body>
-  <header id="navbar"></header>
+    <!-- user login -->
+    <script>
+      const user = localStorage.getItem("user");
+      if (!user) {
+        window.location.href = "login.html"; 
+      }
+    </script>
 
-  <main class="store-container">
-    <section class="store-header">
-      <h1>My Store</h1>
-      <p>Manage your products — add, edit, or delete.</p>
-    </section>
+    <header id="navbar"></header>
 
-    <!-- Add/Edit Product Form -->
-    <section class="product-form-section">
-  <h2 id="form-title">Add New Product</h2>
-  <form id="product-form">
-    <input type="hidden" id="product-id" />
-    <input type="text" id="name" placeholder="Product Name" required>
-    <textarea id="description" placeholder="Product Description" required></textarea>
-    <input type="number" id="price" placeholder="Price ($)" required step="0.01">
-    <input type="url" id="image" placeholder="Image URL" required>
+    <main class="store-container">
+      <section class="store-header">
+        <h1>My Store</h1>
+        <p>Manage your products — add, edit, or delete.</p>
+      </section>
 
-    <!-- Sale checkbox -->
-    <div class="form-checkbox">
-      <input type="checkbox" id="isSale">
-      <label for="isSale">On Sale</label>
-    </div>
+      <!-- Add/Edit Product Form -->
+      <section class="product-form-section">
+        <h2 id="form-title">Add New Product</h2>
+        <form id="product-form">
+          <input type="hidden" id="product-id" />
+          <input type="text" id="name" placeholder="Product Name" required>
+          <textarea id="description" placeholder="Product Description" required></textarea>
+          <input type="number" id="price" placeholder="Price ($)" required step="0.01">
+          <input type="url" id="image" placeholder="Image URL" required>
 
-    <!-- Discount percentage -->
-    <input type="number" id="discount" placeholder="Discount %" min="1" max="100" style="display:none; margin-bottom: 10px;">
+          <!-- Sale checkbox -->
+          <div class="form-checkbox">
+            <input type="checkbox" id="isSale">
+            <label for="isSale">On Sale</label>
+          </div>
 
-    <!-- Category dropdown -->
-    <select id="category" required>
-      <option value="" disabled selected>Select Category</option>
-      <option value="technology">Technology</option>
-      <option value="jewelry">Jewelry</option>
-      <option value="beauty">Beauty</option>
-      <option value="sports">Sports</option>
-      <option value="others">Others</option>
-    </select>
+          <!-- Discount percentage -->
+          <input type="number" id="discount" placeholder="Discount %" min="1" max="100" style="display:none; margin-bottom: 10px;">
 
-    <button type="submit" id="submit-btn">Add Product</button>
-    <button type="button" id="cancel-edit" style="display:none;">Cancel Edit</button>
-  </form>
-</section>
+          <!-- Category dropdown -->
+          <select id="category" required>
+            <option value="" disabled selected>Select Category</option>
+            <option value="technology">Technology</option>
+            <option value="jewelry">Jewelry</option>
+            <option value="beauty">Beauty</option>
+            <option value="sports">Sports</option>
+            <option value="others">Others</option>
+          </select>
 
-    <!-- Product Grid -->
-    <section id="store-grid" class="store-grid"></section>
-  </main>
+          <button type="submit" id="submit-btn">Add Product</button>
+          <button type="button" id="cancel-edit" style="display:none;">Cancel Edit</button>
+        </form>
+      </section>
 
-  <footer class="footer">
-    <p>&copy; 2025 She-Commerce Hub | Empowering Women Entrepreneurs</p>
-  </footer>
+      <!-- Product Grid -->
+      <section id="store-grid" class="store-grid"></section>
+    </main>
 
-  <script type="module" src="js/store.js"></script>
-  <script type="module" src="js/navbar.js"></script>
+    <footer class="footer">
+      <p>&copy; 2025 She-Commerce Hub | Empowering Women Entrepreneurs</p>
+    </footer>
+
+    <script type="module" src="js/store.js"></script>
+    <script type="module" src="js/navbar.js"></script>
 </body>
 </html>

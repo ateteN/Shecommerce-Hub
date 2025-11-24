@@ -88,7 +88,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     let total = 0;
 
     cart.forEach(item => {
-      // Get latest product data (including sale)
       const latest = allProducts.find(p => p.id === item.id);
 
       let originalPrice = latest?.price || item.price;
@@ -117,6 +116,7 @@ document.addEventListener("DOMContentLoaded", async () => {
           <button class="decrease" data-id="${item.id}">-</button>
           <span>${item.quantity}</span>
           <button class="increase" data-id="${item.id}">+</button>
+          <button class="remove" data-id="${item.id}">Remove</button>
         </div>
       `;
 
@@ -133,6 +133,16 @@ document.addEventListener("DOMContentLoaded", async () => {
       btn.addEventListener("click", () => changeQty(btn.dataset.id, -1));
     });
 
+    // Remove button
+    document.querySelectorAll(".remove").forEach(btn => {
+      btn.addEventListener("click", () => {
+        cart = cart.filter(i => i.id !== btn.dataset.id);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderCart();
+      });
+    });
+
+    // Save cart 
     localStorage.setItem("cart", JSON.stringify(cart));
   }
 
@@ -143,20 +153,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     item.quantity += delta;
     if (item.quantity <= 0) cart = cart.filter(i => i.id !== id);
 
+    localStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
   }
 
   // Checkout
   checkoutBtn.addEventListener("click", () => {
-  if (cart.length === 0) return alert("Cart is empty!");
-
-  //Success page
-  localStorage.setItem("checkoutTotal", cartTotalEl.textContent);
-
-  // Redirect to Flutterwave payment page
-  window.location.href = "https://sandbox.flutterwave.com/pay/shecommercepayment";
-});
-
+    if (cart.length === 0) return alert("Cart is empty!");
+    localStorage.setItem("checkoutTotal", cartTotalEl.textContent);
+    window.location.href = "https://sandbox.flutterwave.com/pay/shecommercepayment";
+  });
 
   renderCart();
 });
